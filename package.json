@@ -1,0 +1,27 @@
+{
+  "name": "event-loop-js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:mediastream/event-loop-js.git"
+  },
+  "keywords": [
+    "event-loop"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mediastream/event-loop-js/issues"
+  },
+  "homepage": "https://github.com/mediastream/event-loop-js",
+  "dependencies": {
+    "express": "^4.14.0",
+    "geoip-native": "0.0.8",
+    "pm2": "^2.1.5"
+  }
+}
