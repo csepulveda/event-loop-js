@@ -1,7 +1,7 @@
 install: "npm install"
 language: "node_js"
 node_js:
-  - "6.1.x"
+  - "6"
 script:
   - mkdir build && zip -q -1 -r build/build.zip *
 deploy: 
