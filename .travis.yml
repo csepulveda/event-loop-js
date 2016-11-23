@@ -2,7 +2,7 @@ language: "node_js"
 node_js:
   - "6"
 script:
-  - mkdir build && zip -q -1 -r build/build.zip *
+  - mkdir build && zip -yq -1 -r build/build.zip *
 deploy: 
   - 
     provider: s3
