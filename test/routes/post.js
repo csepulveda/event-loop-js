@@ -1,10 +1,16 @@
 const chai = require('chai')
 const sinon = require('sinon')
+const geoip = require('geoip-native')
 const post = require('../../routes/post')
 
 chai.should()
 
 describe('Routes: post', () => {
+  before((done) => {
+    setTimeout(() => {
+      if (geoip.ready) done()
+    }, 500)
+  })
   it('should return status ok if received proper data', () => {
     const req = {
       body: {
@@ -24,5 +30,6 @@ describe('Routes: post', () => {
     post(req, res)
 
     spy.calledWith({ status: 'OK' }).should.be.true
+    wait = null
   })
 })
