@@ -1,7 +1,9 @@
-install: "npm install"
+install: "yarn install"
 language: "node_js"
 node_js:
   - "6"
+before_script:
+  - npm install -g yarn
 script:
   - mkdir build && zip -q -1 -r build/build.zip *
 deploy: 
