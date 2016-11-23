@@ -7,9 +7,15 @@ chai.should()
 
 describe('Routes: post', () => {
   before((done) => {
-    setTimeout(() => {
-      if (geoip.ready) done()
-    }, 500)
+    const wait = () => {
+      setTimeout(() => {
+        if (geoip.ready)
+          done()
+        else
+          wait()
+      }, 5)
+    }
+    wait()
   })
   it('should return status ok if received proper data', () => {
     const req = {

@@ -1,5 +1,6 @@
 const geoip = require('geoip-native')
 const gm = require('gm')
+const model = require('../model')
 
 module.exports = (req, res, next) => {
   const countryData = geoip.lookup(req.body.ip)
@@ -21,8 +22,13 @@ module.exports = (req, res, next) => {
       image.push(chunk)
     }).on('end', () => {
       data.image = Buffer.concat(image)
-      // console.log(data)
+      new model.Data(data).save((err) => {
+        if (err) {
+          res.status(500).jsonp({status: 'ERROR', data: err})
+        } else {
+          res.jsonp({status: 'OK'})
+        }
+      })
     })
-    res.jsonp({status: 'OK'})
   })
 }

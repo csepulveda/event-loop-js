@@ -1,16 +1,13 @@
-const gm = require('gm')
+model = require('../model')
 
 module.exports = (req, res, next) => {
-  gm(__dirname + '/../image/McLovin.jpg')
-  .fontSize('14')
-  .stroke('#000', 1)
-  .drawText(217, 75, 'SSN')
-  .drawText(14, 223, 'Name')
-  .drawText(14, 237, 'Address')
-  .drawText(14, 250, 'city country')
-  .stream((err, stdout, stderr) => {
-    if (err) return next(err)
-    stdout.pipe(res)
-    stdout.on('error', next)
+  let filters = {}
+  if (req.params.image_id) filters._id = req.params.image_id
+  model.Data.findOne(filters).sort('-_id').exec((err, data) => {
+    if (err || !data) {
+      return next()
+    }
+    res.writeHead(200, {'Content-Type': 'image/jpeg'})
+    res.end(data.image)
   })
-}  // 417x266
+}
