@@ -8,10 +8,10 @@ deploy:
   - 
     provider: s3
     access_key_id: AKIAIKAZ6UDABJNLX3QQ
-    bucket: event-loop-js
+    bucket: event-loop-js-s3
     secret_access_key: zCTomIiB9SGpM3L7W4Wsg1Au31wuaduq+J9iQOa2
     skip_cleanup: true
     on:
       branch: master
     local_dir: build
-    region: us-west-1
+    region: eu-west-1
