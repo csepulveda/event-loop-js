@@ -4,9 +4,7 @@
     "script"      : "./index.js",
     "watch"       : false,
     "instances"   : "2",
-    "env": {
-      "NODE_ENV": "production",
-    },
-    "exec_mode"  : "cluster"
+    "exec_mode"  : "cluster",
+    "wait_ready": true
   }]
 }
