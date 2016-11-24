@@ -12,7 +12,9 @@
       "MONGO": "mongodb://localhost/event-loop-js"
     },
     "env" : {
-      "NODE_ENV": "production"
+      "NODE_ENV": "production",
+      "PORT": 8081,
+      "MONGO": "mongodb://172.31.24.180/event-loop-js"
     }
   }]
 }
