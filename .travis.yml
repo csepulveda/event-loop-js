@@ -26,7 +26,7 @@ deploy:
 
     bucket: event-loop-js
     key: master/build.zip
-    application: EvenLoopJS
+    application: EventLoopJS
     deployment_group: MASTER
     region: us-east-1
     on:
