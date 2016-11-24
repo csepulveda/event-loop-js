@@ -6,7 +6,8 @@
   "scripts": {
     "coverage": "istanbul cover _mocha -- test/**/*.js",
     "test": "mocha test/**/*.js",
-    "start": "pm2 reload pm2.json"
+    "start": "pm2 reload pm2.json",
+    "start-dev": "pm2 reload pm2.json --env devel"
   },
   "repository": {
     "type": "git",

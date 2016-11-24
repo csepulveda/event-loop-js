@@ -1,4 +1,4 @@
-model = require('../model')
+const model = require('../model')
 
 module.exports = (req, res, next) => {
   let filters = {}

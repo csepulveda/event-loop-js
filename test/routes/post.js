@@ -23,7 +23,9 @@ describe('Routes: post', () => {
         name: 'Darth Vader',
         age: 24,
         ip: '120.152.44.64',
-        ssn: '411-90-0070'
+        ssn: '411-90-0070',
+        address: 'address',
+        phone: 'phone'
       }
     }
 

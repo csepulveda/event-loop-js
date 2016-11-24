@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+    jQuery(($) => {
+      const update = () => {
+        $.getJSON('/api/images').always((resp) => {
+          if (resp && resp.data) {
+            $('body').html('')
+            resp.data.map((image) => {
+              let img = $('<img/>').attr('src', `/image/${image._id}`)
+              $('body').append(img)
+            })
+          }
+          setTimeout(update, 5000)
+        })
+      }
+      update()
+    })
+    </script>
+  </head>
+  <body>
+  </body>
+</html>
