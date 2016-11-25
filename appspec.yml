@@ -4,9 +4,6 @@ files:
   - source: /
     destination: /var/www/event-loop-js/app/
 hooks:
-  BeforeInstall:
-    - location: bash/delete-files.sh
-      timeout: 120
   ApplicationStart:
     - location: bash/restart-app.sh
       timeout: 130

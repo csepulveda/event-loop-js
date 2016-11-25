@@ -11,6 +11,10 @@
             resp.data.map((image) => {
               let img = $('<img/>').attr('src', `/image/${image._id}`)
               $('body').append(img)
+            $('.images').html('')
+            resp.data.map((image) => {
+              let img = $('<img/>').attr('src', `/image/${image._id}`)
+              $('.images').append(img)
             })
           }
           setTimeout(update, 5000)
@@ -21,5 +25,7 @@
     </script>
   </head>
   <body>
+  <h1><b>Hola Eventloop.noders.com</b></h1>
+  <div class="images"></div>
   </body>
 </html>
