@@ -5,6 +5,16 @@
     "watch"       : false,
     "instances"   : "2",
     "exec_mode"  : "cluster",
-    "wait_ready": true
+    "wait_ready": true,
+    "env_devel": {
+      "NODE_ENV": "development",
+      "PORT": 3000,
+      "MONGO": "mongodb://localhost/event-loop-js"
+    },
+    "env" : {
+      "NODE_ENV": "production",
+      "PORT": 8081,
+      "MONGO": "mongodb://172.31.24.180/event-loop-js"
+    }
   }]
 }
