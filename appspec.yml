@@ -4,9 +4,6 @@ files:
   - source: /
     destination: /var/www/event-loop-js/app/
 hooks:
-  ApplicationStop:
-    - location: bash/stop-files.sh
-      timeout: 120
   ApplicationStart:
-    - location: bash/start-app.sh
+    - location: bash/restart-app.sh
       timeout: 130
