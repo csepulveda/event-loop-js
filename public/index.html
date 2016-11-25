@@ -7,10 +7,10 @@
       const update = () => {
         $.getJSON('/api/images').always((resp) => {
           if (resp && resp.data) {
-            $('body').html('')
+            $('.images').html('')
             resp.data.map((image) => {
               let img = $('<img/>').attr('src', `/image/${image._id}`)
-              $('body').append(img)
+              $('.images').append(img)
             })
           }
           setTimeout(update, 5000)
@@ -20,6 +20,8 @@
     })
     </script>
   </head>
-  <body>
+  <body
+  <h1>Hola Mundo</h1>
+  <div class="images"></div>
   </body>
 </html>
