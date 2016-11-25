@@ -7,3 +7,6 @@ hooks:
   ApplicationStart:
     - location: bash/restart-app.sh
       timeout: 130
+  ValidateService:
+    - location: bash/validate-app.sh
+      timeout: 120
