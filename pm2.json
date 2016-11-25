@@ -3,7 +3,7 @@
     "name"        : "server",
     "script"      : "./index.js",
     "watch"       : false,
-    "instances"   : "2",
+    "instances"   : "4",
     "exec_mode"  : "cluster",
     "wait_ready": true,
     "env_devel": {
@@ -14,7 +14,7 @@
     "env" : {
       "NODE_ENV": "production",
       "PORT": 8081,
-      "MONGO": "mongodb://172.31.24.180/event-loop-js"
+      "MONGO": "mongodb://172.31.29.187/event-loop-js"
     }
   }]
 }
