@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "coverage": "istanbul cover _mocha -- test/**/*.js",
+    "coverage": "istanbul cover _mocha -- test/**/*.js && istanbul check-coverage",
     "test": "mocha test/**/*.js",
     "start": "pm2 reload pm2.json"
   },
