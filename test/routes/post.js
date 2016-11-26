@@ -2,9 +2,11 @@ const chai = require('chai')
 const sinon = require('sinon')
 const geoip = require('geoip-native')
 const model = require('../../model')
-const post = require('../../routes/post')
+const gm = require('gm')
 
 chai.should()
+
+const post = require('../../routes/post')
 
 describe('Routes: post', () => {
   before((done) => {
@@ -81,5 +83,26 @@ describe('Routes: post', () => {
 
     // act
     post(this.req, res)
+  })
+  it('should return error if there was stream err', (done) => {
+    // arrange
+    const spy = sinon.stub(model.Data.prototype, 'save', (callback) => {
+      callback('Error')
+    })
+
+    const spyGM = sinon.stub(gm.prototype, 'stream', (callback) => {
+      callback('Error on stream.')
+    })
+
+    const res = {}
+
+    const next = (err) => {
+      err.should.be.equal('Error on stream.')
+      gm.prototype.stream.restore()
+      done()
+    }
+
+    // act
+    post(this.req, res, next)
   })
 })
