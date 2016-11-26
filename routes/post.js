@@ -19,6 +19,7 @@ module.exports = (req, res, next) => {
     if (err) return next(err)
     let image = []
     stdout.on('data', (chunk) => {
+      /* istanbul ignore next */
       image.push(chunk)
     }).on('end', () => {
       data.image = Buffer.concat(image)
