@@ -4,17 +4,14 @@ const mongoose = require('mongoose')
 
 chai.should()
 
-let image
-let model
-
 describe('Routes: image', () => {
   before(() => {
     sinon.stub(mongoose, 'connect', () => {})
-    model = require('../../model')
-    image = require('../../routes/image')
+    this.model = require('../../model')
+    this.image = require('../../routes/image')
   })
   afterEach(() => {
-    model.Data.findOne.restore()
+    this.model.Data.findOne.restore()
   })
   after(() => {
     mongoose.connect.restore()
@@ -25,7 +22,7 @@ describe('Routes: image', () => {
       sort: function () { return this },
       exec: function (callback) { callback(null, { image: new Buffer('') }) }
     }
-    const spyQuery = sinon.stub(model.Data, 'findOne', () => stub)
+    const spyQuery = sinon.stub(this.model.Data, 'findOne', () => stub)
     const spyExec = sinon.spy(stub, 'exec')
     const req = {
       params: { image_id: '123' }
@@ -46,7 +43,7 @@ describe('Routes: image', () => {
     }
 
     // action
-    image(req, res)
+    this.image(req, res)
   })
   it('should call next if mongoose exec returned error', (done) => {
     // arrange
@@ -54,7 +51,7 @@ describe('Routes: image', () => {
       sort: function () { return this },
       exec: function (callback) { callback('Error') }
     }
-    sinon.stub(model.Data, 'findOne', () => stub)
+    sinon.stub(this.model.Data, 'findOne', () => stub)
     const spy = sinon.spy(stub, 'exec')
     const req = {
       params: {}
@@ -66,6 +63,6 @@ describe('Routes: image', () => {
     }
 
     // action
-    image(req, res, next)
+    this.image(req, res, next)
   })
 })

@@ -4,12 +4,10 @@ const mongoose = require('mongoose')
 
 chai.should()
 
-let status
-
 describe('Routes: status', () => {
   before(() => {
     sinon.stub(mongoose, 'connect', () => {})
-    status = require('../../routes/status')
+    this.status = require('../../routes/status')
   })
   after(() => {
     mongoose.connect.restore()
@@ -23,7 +21,7 @@ describe('Routes: status', () => {
     mongoose.connection.readyState = 1
 
     // action
-    status(null, res)
+    this.status(null, res)
 
     // assert
     spy.calledWith('OK').should.be.true
@@ -38,7 +36,7 @@ describe('Routes: status', () => {
     mongoose.connection.readyState = 0
 
     // action
-    status(null, res)
+    this.status(null, res)
 
     // assert
     spy.calledWith('ERROR').should.be.true

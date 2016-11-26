@@ -4,16 +4,13 @@ const geoip = require('geoip-native')
 const gm = require('gm')
 const mongoose = require('mongoose')
 
-let model
-let post
-
 chai.should()
 
 describe('Routes: post', () => {
   before((done) => {
     sinon.stub(mongoose, 'connect', () => {})
-    model = require('../../model')
-    post = require('../../routes/post')
+    this.model = require('../../model')
+    this.post = require('../../routes/post')
     this.req = {
       body: {
         name: 'Darth Vader',
@@ -37,11 +34,11 @@ describe('Routes: post', () => {
     mongoose.connect.restore()
   })
   afterEach(() => {
-    model.Data.prototype.save.restore()
+    this.model.Data.prototype.save.restore()
   })
   it('should return status ok if saved succesfully', (done) => {
     // arrange
-    const spy = sinon.stub(model.Data.prototype, 'save', (callback) => {
+    const spy = sinon.stub(this.model.Data.prototype, 'save', (callback) => {
       callback()
     })
 
@@ -63,11 +60,11 @@ describe('Routes: post', () => {
     }
 
     // act
-    post(this.req, res)
+    this.post(this.req, res)
   })
   it('should return error if could not save', (done) => {
     // arrange
-    const spy = sinon.stub(model.Data.prototype, 'save', (callback) => {
+    const spy = sinon.stub(this.model.Data.prototype, 'save', (callback) => {
       callback('Error')
     })
 
@@ -89,11 +86,11 @@ describe('Routes: post', () => {
     }
 
     // act
-    post(this.req, res)
+    this.post(this.req, res)
   })
   it('should return error if there was stream err', (done) => {
     // arrange
-    const spy = sinon.stub(model.Data.prototype, 'save', (callback) => {
+    const spy = sinon.stub(this.model.Data.prototype, 'save', (callback) => {
       callback('Error')
     })
 
@@ -110,6 +107,6 @@ describe('Routes: post', () => {
     }
 
     // act
-    post(this.req, res, next)
+    this.post(this.req, res, next)
   })
 })

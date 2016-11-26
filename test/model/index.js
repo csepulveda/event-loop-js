@@ -8,7 +8,7 @@ chai.should()
 describe('Model: Data', () => {
   before(() => {
     sinon.stub(mongoose, 'connect', () => {})
-    model = require('../../model')
+    this.model = require('../../model')
   })
   after(() => {
     mongoose.connect.restore()
@@ -17,15 +17,15 @@ describe('Model: Data', () => {
     // arrange
     //act
     //assert
-    model.Data.should.not.be.undefined
-    model.Data.modelName.should.be.equal('data')
-    model.Data.schema.should.be.an.instanceof(mongoose.Schema)
-    model.Data.schema.obj.should.have.property('name')
-    model.Data.schema.obj.should.have.property('age')
-    model.Data.schema.obj.should.have.property('ip')
-    model.Data.schema.obj.should.have.property('ssn')
-    model.Data.schema.obj.should.have.property('countryName')
-    model.Data.schema.obj.should.have.property('countryCode')
-    model.Data.schema.obj.should.have.property('image')
+    this.model.Data.should.not.be.undefined
+    this.model.Data.modelName.should.be.equal('data')
+    this.model.Data.schema.should.be.an.instanceof(mongoose.Schema)
+    this.model.Data.schema.obj.should.have.property('name')
+    this.model.Data.schema.obj.should.have.property('age')
+    this.model.Data.schema.obj.should.have.property('ip')
+    this.model.Data.schema.obj.should.have.property('ssn')
+    this.model.Data.schema.obj.should.have.property('countryName')
+    this.model.Data.schema.obj.should.have.property('countryCode')
+    this.model.Data.schema.obj.should.have.property('image')
   })
 })
