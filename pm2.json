@@ -14,7 +14,7 @@
     "env" : {
       "NODE_ENV": "production",
       "PORT": 8081,
-      "MONGO": "mongodb://172.31.29.187/event-loop-js"
+      "MONGO": "mongodb://172.31.21.147/event-loop-js"
     }
   }]
 }
