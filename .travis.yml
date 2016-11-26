@@ -6,6 +6,7 @@ language: node_js
 node_js:
 - '6'
 script:
+- npm test
 - mkdir build && zip -y -q -1 -r build/build.zip *
 deploy:
   - provider: s3
