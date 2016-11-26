@@ -1,0 +1,34 @@
+cache:
+  bundler: true
+  directories:
+    - node_modules
+language: node_js
+node_js:
+- '6'
+script:
+- mkdir build && zip -y -q -1 -r build/build.zip *
+deploy:
+  - provider: s3
+    access_key_id: AKIAIGPDK3FVZYDY2Q6A
+    secret_access_key:
+      secure: "B+saOMWoayYHgmGLvAPtINNOsFnvr6BI0my0WKlRM6WIIRpGs/odssGNl8LNOo+ngSoC5cxGRZKRbJIVXaiWCnryUnPLfog13jNzQyTlxezwNocG1H+3IAMw/BaDgVnIKb9txf3furpnfqFb5ks5v5TfdOZM4KmkMDYqrbRmNZn8H7L1XOc+A46DAD/5ipEKRNoc4F+agoJ4vTK9lZVu/L5jvmVZ5H9XtEzp9K7zkXUWc3W0u0aN9HD7kesfgwrSo7ZZE++ZUphG0j1C3b4Y4mTTNYpqRrpvYa1YPLWh51OScH4MNjaF3QeZGFAameq2FvYiZ1eVioDDH7vAVN+FY57m3BmsKZYRUNhwgvFsk93bGegVe9TIi9t59fzgaQWoPQFvx3NYd7rbMxcbYAap8cezuqBTucUoBr3XEoE0ZmNosj5WLIycwoNrzSA/Wqlkea1+kwan3xZbOoaxoi3sBci1rH+/npxK1g/jmHSCI3LZId9rkGrdZy+U3wN/2yBUbhgL9tD9O1jUvIrEwwX139YLphP6WWdQZCtSNQJbQMGZ+ffbjsiCATBrSoVtTbIRNdU2Jp9Ak/JVrHjMjo+ZDHbhtsI56sxVyZJP076ObEx53vDzfOxNbuJsbTwTMjouy5sQBbSLf21xZj2P1DcKNtJKh3gJipZeG9qqcURl6f8="
+    bucket: event-loop-js
+    skip_cleanup: true
+    upload-dir: master
+    local_dir: build
+    region: us-east-1
+    on:
+      branch: master
+  - provider: codedeploy
+    access_key_id: AKIAIGPDK3FVZYDY2Q6A
+    secret_access_key:
+      secure: "B+saOMWoayYHgmGLvAPtINNOsFnvr6BI0my0WKlRM6WIIRpGs/odssGNl8LNOo+ngSoC5cxGRZKRbJIVXaiWCnryUnPLfog13jNzQyTlxezwNocG1H+3IAMw/BaDgVnIKb9txf3furpnfqFb5ks5v5TfdOZM4KmkMDYqrbRmNZn8H7L1XOc+A46DAD/5ipEKRNoc4F+agoJ4vTK9lZVu/L5jvmVZ5H9XtEzp9K7zkXUWc3W0u0aN9HD7kesfgwrSo7ZZE++ZUphG0j1C3b4Y4mTTNYpqRrpvYa1YPLWh51OScH4MNjaF3QeZGFAameq2FvYiZ1eVioDDH7vAVN+FY57m3BmsKZYRUNhwgvFsk93bGegVe9TIi9t59fzgaQWoPQFvx3NYd7rbMxcbYAap8cezuqBTucUoBr3XEoE0ZmNosj5WLIycwoNrzSA/Wqlkea1+kwan3xZbOoaxoi3sBci1rH+/npxK1g/jmHSCI3LZId9rkGrdZy+U3wN/2yBUbhgL9tD9O1jUvIrEwwX139YLphP6WWdQZCtSNQJbQMGZ+ffbjsiCATBrSoVtTbIRNdU2Jp9Ak/JVrHjMjo+ZDHbhtsI56sxVyZJP076ObEx53vDzfOxNbuJsbTwTMjouy5sQBbSLf21xZj2P1DcKNtJKh3gJipZeG9qqcURl6f8="
+    bucket: event-loop-js
+    key: master/build.zip
+    application: EventLoopJS
+    deployment_group: MASTER
+    region: us-east-1
+    wait-until-deployed: true
+    on:
+      branch: master
+  

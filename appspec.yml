@@ -1,0 +1,8 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /var/www/event-loop-js/deploy/
+hooks:
+  ApplicationStart:
+    - location: bash/restart-app.sh

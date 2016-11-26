@@ -1,0 +1,42 @@
+{
+  "name": "event-loop-js",
+  "version": "1.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "coverage": "istanbul cover _mocha -- test/**/*.js && istanbul check-coverage",
+    "test": "mocha test/**/*.js",
+    "start": "pm2 reload pm2.json",
+    "start-dev": "pm2 reload pm2.json --env devel"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:mediastream/event-loop-js.git"
+  },
+  "keywords": [
+    "event-loop"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mediastream/event-loop-js/issues"
+  },
+  "homepage": "https://github.com/mediastream/event-loop-js",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "dreamjs": "^0.1.7",
+    "express": "^4.14.0",
+    "geoip-native": "0.0.8",
+    "gm": "^1.23.0",
+    "jobq": "^1.0.11",
+    "mongoose": "^4.7.0",
+    "pm2": "^2.1.5",
+    "request": "^2.79.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.1.2",
+    "sinon": "^1.17.6"
+  }
+}
