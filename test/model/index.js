@@ -1,13 +1,18 @@
 const chai = require('chai')
 const sinon = require('sinon')
 const geoip = require('geoip-native')
-const model = require('../../model')
-const post = require('../../routes/post')
 const mongoose = require('mongoose')
 
 chai.should()
 
 describe('Model: Data', () => {
+  before(() => {
+    sinon.stub(mongoose, 'connect', () => {})
+    model = require('../../model')
+  })
+  after(() => {
+    mongoose.connect.restore()
+  })
   it('should return mongoose schema', () => {
     // arrange
     //act

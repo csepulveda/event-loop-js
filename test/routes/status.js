@@ -1,17 +1,19 @@
 const chai = require('chai')
 const sinon = require('sinon')
-const mock = require('mock-require')
+const mongoose = require('mongoose')
 
 chai.should()
 
-const mongoose = {
-  connection: {}
-}
-mock('mongoose', mongoose)
-
-const status = require('../../routes/status')
+let status
 
 describe('Routes: status', () => {
+  before(() => {
+    sinon.stub(mongoose, 'connect', () => {})
+    status = require('../../routes/status')
+  })
+  after(() => {
+    mongoose.connect.restore()
+  })
   it('should return ok if mongoose is ready', () => {
     // arrange
     const res = {

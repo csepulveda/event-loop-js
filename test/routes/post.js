@@ -1,15 +1,19 @@
 const chai = require('chai')
 const sinon = require('sinon')
 const geoip = require('geoip-native')
-const model = require('../../model')
 const gm = require('gm')
+const mongoose = require('mongoose')
+
+let model
+let post
 
 chai.should()
 
-const post = require('../../routes/post')
-
 describe('Routes: post', () => {
   before((done) => {
+    sinon.stub(mongoose, 'connect', () => {})
+    model = require('../../model')
+    post = require('../../routes/post')
     this.req = {
       body: {
         name: 'Darth Vader',
@@ -28,6 +32,9 @@ describe('Routes: post', () => {
       }, 5)
     }
     wait()
+  })
+  after(() => {
+    mongoose.connect.restore()
   })
   afterEach(() => {
     model.Data.prototype.save.restore()

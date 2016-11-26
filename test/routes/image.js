@@ -1,13 +1,23 @@
 const chai = require('chai')
 const sinon = require('sinon')
-const model = require('../../model')
-const image = require('../../routes/image')
+const mongoose = require('mongoose')
 
 chai.should()
 
+let image
+let model
+
 describe('Routes: image', () => {
+  before(() => {
+    sinon.stub(mongoose, 'connect', () => {})
+    model = require('../../model')
+    image = require('../../routes/image')
+  })
   afterEach(() => {
     model.Data.findOne.restore()
+  })
+  after(() => {
+    mongoose.connect.restore()
   })
   it('should return image if found data', (done) => {
     // arrange
